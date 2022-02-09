@@ -1,0 +1,23 @@
+.sequence__braces {
+  @apply border-2 md:border-4 border-white border-solid rounded-lg grid grid-flow-col  text-white h-10 md:h-14;
+}
+
+.squence_brace {
+  @apply m-0 py-1 px-2 border-l-0 border-t-0 border-b-0 border-r-2 border-solid border-white md:py-2 md:px-3 text-2xl md:text-4xl md:border-r-4 text-center;
+}
+
+.squence_brace:last-child {
+  @apply border-r-0;
+}
+
+.sequence__pointer-wrapper {
+  @apply flex flex-row;
+}
+
+.sequence__pointer {
+  @apply text-2xl md:text-4xl py-2 md:py-4 animate-bounce motion-reduce:animate-bounce;
+}
+
+.sequence__pointer__spacer {
+  @apply h-2;
+}
