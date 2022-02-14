@@ -3,8 +3,11 @@ import "./Note.css";
 
 type Props = {
   value: string;
+  className?: string;
 };
 
-export default function Note({ value }: Props) {
-  return <div className="note">{value}</div>;
+export default function Note({ value, className }: Props) {
+  return (
+    <div className={`note${className ? " " + className : ""}`}>{value}</div>
+  );
 }

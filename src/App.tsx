@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Button from "./components/Button/Button";
+import Sequence from "./components/Sequence/Sequence";
 
 function App() {
+  const [braces, setBraces] = useState("");
+
+  function addBraceHandler() {
+    setBraces((current) => current + "(");
+  }
+
+  function removeBraceHandler() {
+    if (braces.length > 0)
+      setBraces((current) => current.slice(0, current.length - 1));
+  }
+
   return (
     <div className="App">
       <header>⚖️ Balanced Braces</header>
@@ -23,10 +35,12 @@ function App() {
         </article>
       </section>
 
-      <section>
-        <Button label="[" />
-        <Button label="]" />
+      <section className="controls">
+        <Button label="[" single onClick={addBraceHandler} />
+        <Button label="]" single onClick={removeBraceHandler} />
       </section>
+
+      {braces.length > 0 && <Sequence value={braces} pointer={0} />}
     </div>
   );
 }

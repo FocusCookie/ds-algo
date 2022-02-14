@@ -1,11 +1,15 @@
 .App {
-  @apply text-center bg-gray-800 min-h-screen w-96;
+  @apply flex flex-col gap-4 text-center bg-gray-800 min-h-screen px-4 md:w-1/2;
 }
 
 header {
-  @apply text-yellow-300 font-extrabold underline text-4xl py-12;
+  @apply text-yellow-300 font-extrabold underline text-4xl pt-12;
 }
 
 article {
   @apply flex flex-col gap-4;
+}
+
+.controls {
+  @apply flex flex-row gap-8 justify-center mt-8;
 }
