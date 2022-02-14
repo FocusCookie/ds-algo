@@ -3,7 +3,7 @@ import "./Button.css";
 
 type Props = {
   onClick?: React.MouseEventHandler;
-  variant: "primary" | "secondary" | "subtle";
+  variant?: "primary" | "secondary" | "subtle";
   label: string;
 };
 

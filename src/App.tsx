@@ -1,25 +1,32 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import Button from "./components/Button/Button";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+      <header>⚖️ Balanced Braces</header>
+      <section>
+        <article>
+          <p>
+            Add braces how ever you want and click verify 🔎 to check if the
+            braces are balanced.
+          </p>
+          <p>
+            We will use a stack to solve the question if the given braces
+            sequences is balanced. Each opening brace [ will be added to the
+            stack and each time a closing brace occurs we remove one opening
+            brace from the stack. At the end the stack should be empty. If the
+            stack is empty before the sequence ends we know the sequence is not
+            balanced.
+          </p>
+        </article>
+      </section>
 
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section>
+        <Button label="[" />
+        <Button label="]" />
+      </section>
     </div>
   );
 }

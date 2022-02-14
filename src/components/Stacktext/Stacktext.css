@@ -1,0 +1,15 @@
+.stacktext {
+  @apply font-sans text-white;
+}
+
+.stacktext__object {
+  @apply text-white;
+}
+
+.stacktext__method {
+  @apply text-yellow-400 font-semibold;
+}
+
+.stacktext__argument {
+  @apply text-green-400;
+}
