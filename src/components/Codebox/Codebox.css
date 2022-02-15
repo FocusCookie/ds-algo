@@ -18,3 +18,7 @@
 .codebox__topbar__control--yellow {
   @apply bg-yellow-500;
 }
+
+.codebox__content {
+  @apply text-left;
+}

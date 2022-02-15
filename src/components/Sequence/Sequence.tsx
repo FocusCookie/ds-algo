@@ -44,14 +44,16 @@ export default function Sequence({ value, pointer = 0 }: Props) {
           }}
         ></div>
 
-        <span
-          className="sequence__pointer"
-          style={{
-            paddingLeft: `${100 / braces.length / 2 - 2}%`,
-          }}
-        >
-          👆
-        </span>
+        {pointer >= 0 && (
+          <span
+            className="sequence__pointer"
+            style={{
+              paddingLeft: `${100 / braces.length / 2 - 2}%`,
+            }}
+          >
+            👆
+          </span>
+        )}
       </div>
     </div>
   );

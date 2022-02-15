@@ -11,7 +11,7 @@
 }
 
 .sequence__pointer-wrapper {
-  @apply flex flex-row;
+  @apply flex flex-row h-4;
 }
 
 .sequence__pointer {

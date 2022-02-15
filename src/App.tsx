@@ -2,17 +2,32 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Button from "./components/Button/Button";
 import Sequence from "./components/Sequence/Sequence";
+import Stack from "./components/Stack/Stack";
+import Codebox from "./components/Codebox/Codebox";
+import Stacktext from "./components/Stacktext/Stacktext";
+import ConsoleLog from "./components/ConsoleLog/ConsoleLog";
+import Log from "./components/Log/Log";
 
 function App() {
   const [braces, setBraces] = useState("");
+  const [isValidating, setIsValidating] = useState(false);
+  const [commands, setCommands] = useState();
+  const [stack, setStack] = useState<string[]>([]);
+  const [braceIndex, setBraceIndex] = useState(0);
 
-  function addBraceHandler() {
-    setBraces((current) => current + "(");
+  function addOpeningBraceHandler() {
+    if (braces.length < 10) setBraces((current) => current + "[");
+  }
+  function addClosingBranceHandler() {
+    if (braces.length < 10) setBraces((current) => current + "]");
   }
 
-  function removeBraceHandler() {
-    if (braces.length > 0)
-      setBraces((current) => current.slice(0, current.length - 1));
+  function validateSequenceHandler() {
+    setIsValidating(true);
+  }
+
+  function resetSequenceHandler() {
+    setBraces("");
   }
 
   return (
@@ -35,12 +50,36 @@ function App() {
         </article>
       </section>
 
-      <section className="controls">
-        <Button label="[" single onClick={addBraceHandler} />
-        <Button label="]" single onClick={removeBraceHandler} />
+      <section className="brace-controlls">
+        <Button label="[" single onClick={addOpeningBraceHandler} />
+        <Button label="]" single onClick={addClosingBranceHandler} />
       </section>
 
-      {braces.length > 0 && <Sequence value={braces} pointer={0} />}
+      {braces.length > 0 && <Sequence value={braces} pointer={-1} />}
+
+      {!isValidating && (
+        <section className="controlls">
+          <Button
+            variant="subtle"
+            label="reset sequence"
+            onClick={resetSequenceHandler}
+          />
+          <Button
+            variant="primary"
+            label="validate sequence"
+            onClick={validateSequenceHandler}
+          />
+        </section>
+      )}
+
+      {isValidating && (
+        <section className="execution">
+          <Codebox>{commands}</Codebox>
+          <div className="execution__stack">
+            <Stack items={stack} />
+          </div>
+        </section>
+      )}
     </div>
   );
 }

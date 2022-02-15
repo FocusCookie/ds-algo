@@ -4,7 +4,6 @@ import "./ConsoleLog.css";
 type Props = { value: string };
 
 export default function ConsoleLog({ value = "foo bar" }: Props) {
-  console.log("fwef");
   return (
     <div className="console-log">
       <span>console.</span>
