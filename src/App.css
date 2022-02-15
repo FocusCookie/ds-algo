@@ -1,5 +1,5 @@
 .App {
-  @apply flex flex-col gap-4 text-center bg-gray-800 min-h-screen px-4 md:w-1/2 pb-32;
+  @apply flex flex-col gap-12 text-center bg-gray-800 min-h-screen px-4 md:w-5/6 pb-32;
 }
 
 header {
@@ -18,8 +18,18 @@ article {
 }
 
 .execution {
-  @apply flex flex-col md:grid md:grid-cols-2 md:grid-rows-1 gap-8 pt-12;
+  @apply flex flex-col-reverse md:grid md:grid-cols-2 md:grid-rows-1 md:grid-flow-col-dense gap-8;
 }
 .execution__stack {
-  @apply flex flex-row justify-center;
+  @apply flex flex-row justify-center h-40 md:h-52;
+}
+
+.message {
+  @apply text-4xl font-sans text-gray-900 rounded p-4 shadow;
+}
+.message--success {
+  @apply bg-green-400;
+}
+.message--error {
+  @apply bg-red-400;
 }

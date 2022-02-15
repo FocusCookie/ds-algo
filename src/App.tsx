@@ -11,9 +11,115 @@ import Log from "./components/Log/Log";
 function App() {
   const [braces, setBraces] = useState("");
   const [isValidating, setIsValidating] = useState(false);
-  const [commands, setCommands] = useState();
+  const [commands, setCommands] = useState<any[]>([]);
   const [stack, setStack] = useState<string[]>([]);
   const [braceIndex, setBraceIndex] = useState(0);
+  const [validated, setValidated] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
+
+  useEffect(() => {
+    let timeoutId: any;
+
+    if (braceIndex === braces.length - 1 || isInvalid) {
+      setValidated(true);
+      setIsValidating(false);
+    }
+
+    if (braceIndex < braces.length && isValidating && !isInvalid) {
+      const brace = braces[braceIndex];
+      if (brace === "[") {
+        setStack((current) => [...current, brace]);
+        setCommands((current) => [
+          ...current,
+          <ConsoleLog value="stack.size()" key={`console-log-${braceIndex}`} />,
+          <Log
+            value={`stack size: ${stack.length}`}
+            key={`log-stacksize-${braceIndex}`}
+          />,
+          <Stacktext
+            method="push"
+            arg={`"${brace}"`}
+            key={`stacktext-${braceIndex}`}
+          />,
+          <Log
+            value={`stack size: ${stack.length + 1}`}
+            key={`log-stacksize-after-push-${braceIndex}`}
+          />,
+          <Log
+            value={`------------------------------`}
+            key={`log-hr-${braceIndex}`}
+          />,
+        ]);
+      }
+
+      if (brace === "]" && stack.length > 0) {
+        setStack((current) => [...current.slice(0, current.length - 1)]);
+        setCommands((current) => [
+          ...current,
+          <ConsoleLog
+            value="stack.isEmpty()"
+            key={`console-log-isEmpty-${braceIndex}`}
+          />,
+          <Log
+            value={`${
+              stack.length > 0 ? "stack is not empty" : "stack is empty"
+            }`}
+            key={`log-stackIsEmpty-${braceIndex}`}
+          />,
+          <Stacktext
+            method="pop"
+            arg={`"${brace}"`}
+            key={`stacktext-${braceIndex}`}
+          />,
+          <ConsoleLog
+            value="stack.size()"
+            key={`console-log-size-after-pop-${braceIndex}`}
+          />,
+          <Log
+            value={`stack size: ${stack.length - 1}`}
+            key={`log-stacksize-after-push-${braceIndex}`}
+          />,
+          <Log
+            value={`------------------------------`}
+            key={`log-hr-${braceIndex}`}
+          />,
+        ]);
+      }
+
+      let invalid = false;
+      if (brace === "]" && stack.length === 0) {
+        setCommands((current) => [
+          ...current,
+          <ConsoleLog
+            value="stack.isEmpty()"
+            key={`console-log-isEmpty-${braceIndex}`}
+          />,
+          <Log
+            value={`${
+              stack.length > 0 ? "stack is not empty" : "stack is empty"
+            }`}
+            key={`log-stackIsEmpty-${braceIndex}`}
+          />,
+          <Log
+            value={`------------------------------`}
+            key={`log-hr-${braceIndex}`}
+          />,
+        ]);
+
+        invalid = true;
+        setIsInvalid(true);
+        setIsValidating(false);
+      }
+
+      setTimeout(() => {
+        if (!invalid) setBraceIndex((current) => current + 1);
+      }, 2000);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [braceIndex, isValidating]);
 
   function addOpeningBraceHandler() {
     if (braces.length < 10) setBraces((current) => current + "[");
@@ -24,10 +130,20 @@ function App() {
 
   function validateSequenceHandler() {
     setIsValidating(true);
+    setValidated(false);
+    setCommands([]);
+    setStack([]);
+    setIsInvalid(false);
+    setBraceIndex(0);
   }
 
   function resetSequenceHandler() {
+    setValidated(false);
     setBraces("");
+    setCommands([]);
+    setStack([]);
+    setIsInvalid(false);
+    setBraceIndex(0);
   }
 
   return (
@@ -40,12 +156,15 @@ function App() {
             braces are balanced.
           </p>
           <p>
-            We will use a stack to solve the question if the given braces
-            sequences is balanced. Each opening brace [ will be added to the
-            stack and each time a closing brace occurs we remove one opening
-            brace from the stack. At the end the stack should be empty. If the
-            stack is empty before the sequence ends we know the sequence is not
-            balanced.
+            We will use a stack to solve the question, if the given braces
+            sequences is balanced or not. Each opening brace "[" will be added
+            to the stack and each time a closing brace occurs we remove one
+            opening brace from the stack.
+          </p>
+          <p>
+            At the end the stack should be empty. If the stack is empty before
+            the sequence ends or we still have items left in the stack we know
+            the sequence is not balanced.
           </p>
         </article>
       </section>
@@ -55,9 +174,9 @@ function App() {
         <Button label="]" single onClick={addClosingBranceHandler} />
       </section>
 
-      {braces.length > 0 && <Sequence value={braces} pointer={-1} />}
+      {braces.length > 0 && <Sequence value={braces} pointer={braceIndex} />}
 
-      {!isValidating && (
+      {!isValidating && braces.length > 0 && (
         <section className="controlls">
           <Button
             variant="subtle"
@@ -72,7 +191,19 @@ function App() {
         </section>
       )}
 
-      {isValidating && (
+      {!isValidating && validated && stack.length === 0 && !isInvalid && (
+        <div className="message message--success">
+          <h1>The braces are balanced ⚖️! 🥳</h1>
+        </div>
+      )}
+
+      {(!isValidating && validated && stack.length > 0) || isInvalid ? (
+        <div className="message message--error">
+          <h1>The braces are not balanced! 🙁</h1>
+        </div>
+      ) : null}
+
+      {(stack.length > 0 || isValidating || validated) && (
         <section className="execution">
           <Codebox>{commands}</Codebox>
           <div className="execution__stack">
