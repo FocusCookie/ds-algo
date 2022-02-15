@@ -1,0 +1,141 @@
+:root {
+  --item-0: 0px;
+  --item-1: 8px;
+  --item-2: 16px;
+  --item-3: 24px;
+  --item-4: 32px;
+  --item-5: 40px;
+  --item-6: 48px;
+  --item-7: 56px;
+  --item-8: 64px;
+  --item-9: 72px;
+  --down: -32px;
+}
+
+.stack {
+  @apply grid grid-cols-1 grid-rows-1;
+}
+
+.stack__note {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  animation: slideDown-0 1s ease-in 0s 1 forwards;
+}
+
+.stack__note--1 {
+  animation: slideDown-1 1s ease-in 0s 1 forwards;
+}
+.stack__note--2 {
+  animation: slideDown-2 1s ease-in 0s 1 forwards;
+}
+.stack__note--3 {
+  animation: slideDown-3 1s ease-in 0s 1 forwards;
+}
+.stack__note--4 {
+  animation: slideDown-4 1s ease-in 0s 1 forwards;
+}
+.stack__note--5 {
+  animation: slideDown-5 1s ease-in 0s 1 forwards;
+}
+.stack__note--6 {
+  animation: slideDown-6 1s ease-in 0s 1 forwards;
+}
+.stack__note--7 {
+  animation: slideDown-7 1s ease-in 0s 1 forwards;
+}
+.stack__note--8 {
+  animation: slideDown-8 1s ease-in 0s 1 forwards;
+}
+.stack__note--9 {
+  animation: slideDown-9 1s ease-in 0s 1 forwards;
+}
+
+@keyframes slideDown-0 {
+  from {
+    transform: translate(var(--item-0), var(--down));
+  }
+  to {
+    transform: translate(var(--item-0), var(--item-0));
+  }
+}
+
+@keyframes slideDown-1 {
+  from {
+    transform: translate(var(--item-1), var(--down));
+  }
+  to {
+    transform: translate(var(--item-1), var(--item-1));
+  }
+}
+
+@keyframes slideDown-2 {
+  from {
+    transform: translate(var(--item-2), var(--down));
+  }
+  to {
+    transform: translate(var(--item-2), var(--item-2));
+  }
+}
+
+@keyframes slideDown-3 {
+  from {
+    transform: translate(var(--item-3), var(--down));
+  }
+  to {
+    transform: translate(var(--item-3), var(--item-3));
+  }
+}
+
+@keyframes slideDown-4 {
+  from {
+    transform: translate(var(--item-4), var(--down));
+  }
+  to {
+    transform: translate(var(--item-4), var(--item-4));
+  }
+}
+
+@keyframes slideDown-5 {
+  from {
+    transform: translate(var(--item-5), var(--down));
+  }
+  to {
+    transform: translate(var(--item-5), var(--item-5));
+  }
+}
+
+@keyframes slideDown-6 {
+  from {
+    transform: translate(var(--item-6), var(--down));
+  }
+  to {
+    transform: translate(var(--item-6), var(--item-6));
+  }
+}
+
+@keyframes slideDown-7 {
+  from {
+    transform: translate(var(--item-7), var(--down));
+  }
+  to {
+    transform: translate(var(--item-7), var(--item-7));
+  }
+}
+
+@keyframes slideDown-8 {
+  from {
+    transform: translate(var(--item-8), var(--down));
+  }
+  to {
+    transform: translate(var(--item-8), var(--item-8));
+  }
+}
+
+@keyframes slideDown-9 {
+  from {
+    transform: translate(var(--item-9), var(--down));
+  }
+  to {
+    transform: translate(var(--item-9), var(--item-9));
+  }
+}
