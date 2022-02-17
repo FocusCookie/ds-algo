@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/FocusCookie/ds-algo/static/css/main.64b2b50e.css",
-    "main.js": "/FocusCookie/ds-algo/static/js/main.767453fe.js",
-    "static/js/787.f6bfe8ad.chunk.js": "/FocusCookie/ds-algo/static/js/787.f6bfe8ad.chunk.js",
-    "index.html": "/FocusCookie/ds-algo/index.html",
-    "main.64b2b50e.css.map": "/FocusCookie/ds-algo/static/css/main.64b2b50e.css.map",
-    "main.767453fe.js.map": "/FocusCookie/ds-algo/static/js/main.767453fe.js.map",
-    "787.f6bfe8ad.chunk.js.map": "/FocusCookie/ds-algo/static/js/787.f6bfe8ad.chunk.js.map"
+    "main.css": "/ds-algo/static/css/main.64b2b50e.css",
+    "main.js": "/ds-algo/static/js/main.61b9f500.js",
+    "static/js/787.f6bfe8ad.chunk.js": "/ds-algo/static/js/787.f6bfe8ad.chunk.js",
+    "index.html": "/ds-algo/index.html",
+    "main.64b2b50e.css.map": "/ds-algo/static/css/main.64b2b50e.css.map",
+    "main.61b9f500.js.map": "/ds-algo/static/js/main.61b9f500.js.map",
+    "787.f6bfe8ad.chunk.js.map": "/ds-algo/static/js/787.f6bfe8ad.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.64b2b50e.css",
-    "static/js/main.767453fe.js"
+    "static/js/main.61b9f500.js"
   ]
 }
