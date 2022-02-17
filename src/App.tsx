@@ -18,7 +18,7 @@ function App() {
   const [isInvalid, setIsInvalid] = useState(false);
 
   useEffect(() => {
-    let timeoutId: any;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
     if (braceIndex === braces.length - 1 || isInvalid) {
       setValidated(true);
@@ -111,7 +111,7 @@ function App() {
         setIsValidating(false);
       }
 
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         if (!invalid) setBraceIndex((current) => current + 1);
       }, 2000);
     }
