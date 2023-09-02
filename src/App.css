@@ -1,5 +1,5 @@
 .App {
-  @apply flex flex-col gap-12 text-center bg-gray-800 min-h-screen px-4 md:w-5/6 pb-32;
+  @apply flex flex-col gap-12 text-center bg-gray-800 w-full h-full p-4;
 }
 
 header {

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -10,5 +16,5 @@ body {
 }
 
 #root {
-  @apply flex flex-row justify-center;
+  @apply flex flex-row justify-center w-full h-full;
 }
